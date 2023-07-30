@@ -18,7 +18,7 @@ def cnp_validator(cnp):
         return False
     # test date
     try:
-        datetime.datetime(int('19' + year), int(month), int(day))
+        datetime.datetime(int('20' + year), int(month), int(day))
         false_date = False
     except ValueError:
         false_date = True
