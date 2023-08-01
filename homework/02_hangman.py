@@ -8,7 +8,7 @@ pics = ['  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========',
         '  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========',
         '  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========']
 words = ['crocodile', 'monkey', 'tiger', 'snake', 'armadillo', 'cockroach', 'hornet', 'butterfly']
-word = [*words[random.randint(0, 7)]]
+word = words[random.randint(0, 7)]
 hidden = [*'_' * len(word)]
 tries = [word[0], word[-1]]
 lives = 6
@@ -30,12 +30,12 @@ while True:
     print(''.join(hidden))
     print(f"Guesses: {', '.join(tries)}")
     # Check if you won or lost
-    if ''.join(word) == ''.join(hidden):
+    if word == ''.join(hidden):
         print("You won!")
         break
     if lives == 0:
         print("You lost, game over.")
-        print(f"The word was {''.join(word)}.")
+        print(f"The word was {word}.")
         break
     # Get input
     print('=============================')
