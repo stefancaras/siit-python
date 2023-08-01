@@ -15,10 +15,9 @@ lives = 6
 
 
 def replace(char):
-    if char in word:
-        for i in range(len(word)):
-            if word[i] == char:
-                hidden[i] = char
+    for i in range(len(word)):
+        if word[i] == char:
+            hidden[i] = char
 
 
 # Replace first and last characters in hidden word
