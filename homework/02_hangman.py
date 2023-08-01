@@ -43,15 +43,13 @@ while True:
     # Test situations
     if guess in tries:
         print("You've already tried that.")
-        continue
     elif not guess.isalpha():
         print("Please enter only English letters.")
-        continue
     elif guess in word:
         print("Good guess.")
         replace(guess)
+        tries.append(guess)
     else:
         print("Wrong guess.")
         lives -= 1
-    # Add guess to the list of guesses
-    tries.append(guess)
+        tries.append(guess)
