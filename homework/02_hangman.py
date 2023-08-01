@@ -39,7 +39,7 @@ while True:
         break
     # Get input
     print('=============================')
-    guess = input('Please enter a character: ').lower()[0]
+    guess = (input('Please enter a character: ').lower() or ' ')[0]
     # Test situations
     if guess in tries:
         print("You've already tried that.")
