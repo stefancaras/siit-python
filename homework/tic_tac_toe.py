@@ -24,7 +24,7 @@ def make_best_move():
     for i in range(9):
         if board[i] == '-':
             board[i] = 'O'
-            score = minimax(True, board)
+            score = minimax(True, board, -2, 2)
             board[i] = '-'
             if score < best_score:
                 best_score = score
@@ -32,7 +32,7 @@ def make_best_move():
     board[best_move] = 'O'
 
 
-def minimax(x_turn, position):
+def minimax(x_turn, position, alpha, beta):
     game_over = is_game_over(position)
     if game_over:
         return 0 if game_over == 'tie' else 1 if game_over == 'X' else -1
@@ -41,15 +41,23 @@ def minimax(x_turn, position):
     for i in range(9):
         if position[i] == '-':
             position[i] = 'X' if x_turn else 'O'
-            scores.append(minimax(not x_turn, position))
+            scores.append(minimax(not x_turn, position, alpha, beta))
             position[i] = '-'
+            # alpha-beta pruning (increases speed)
+            if x_turn:
+                alpha = max(alpha, scores[-1])
+            else:
+                beta = min(beta, scores[-1])
+            if beta <= alpha:
+                break
     return max(scores) if x_turn else min(scores)
 
 
 while True:
     draw_board()
-    if is_game_over(board):
-        print("It's a tie!" if is_game_over(board) == 'tie' else is_game_over(board) + ' won!')
+    game_over = is_game_over(board)
+    if game_over:
+        print("It's a tie!" if game_over == 'tie' else game_over + ' won!')
         break
 
     coord = input('Enter position: ')
