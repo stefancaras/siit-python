@@ -20,7 +20,7 @@ def is_game_over(board):
 
 def make_best_move():
     best_score = 2
-    best_move = 0
+    best_move = 9
     for i in range(9):
         if board[i] == '-':
             board[i] = 'O'
@@ -49,13 +49,13 @@ def minimax(x_turn, position):
 while True:
     draw_board()
     if is_game_over(board):
-        draw_board()
         print("It's a tie!" if is_game_over(board) == 'tie' else is_game_over(board) + ' won!')
         break
 
     coord = input('Enter position: ')
     if int(coord) in range(1, 10) and board[int(coord) - 1] == '-':
         board[int(coord) - 1] = 'X'
-        make_best_move()
+        if not is_game_over(board):
+            make_best_move()
     else:
         print('Wrong position.')
