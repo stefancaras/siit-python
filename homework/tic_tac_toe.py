@@ -58,11 +58,10 @@ def play(player_x):
     coord = input('Enter position (1-9): ')
     if coord.isnumeric() and int(coord) in range(1, 10) and board[int(coord) - 1] == '-':
         board[int(coord) - 1] = 'X' if player_x else 'O'
+        if not is_game_over(board):
+            make_best_move(not player_x)
     else:
         print('Not a valid number.')
-        return
-    if not is_game_over(board):
-        make_best_move(not player_x)
 
 
 is_x = True if input('Choose X or O: ').upper() == 'X' else False
@@ -75,7 +74,7 @@ while True:
         draw_board()
         print("It's a tie!" if game_over == 'tie' else game_over + ' won!')
         break
-    if is_x:
-        play(True)
+    elif is_x:
+        play('X')
     else:
-        play(False)
+        play(0)
