@@ -19,16 +19,15 @@ def is_game_over(board):
 
 
 def make_best_move(for_x):
-    best_score = -2 if for_x else 2
-    best_move = 9
+    scores = []
     for i in range(9):
         if board[i] == '-':
             board[i] = 'X' if for_x else 'O'
-            score = minimax(not for_x, board, -2, 2)
+            scores.append(minimax(not for_x, board, -2, 2))
             board[i] = '-'
-            if (score if for_x else best_score) > (best_score if for_x else score):
-                best_score = score
-                best_move = i
+        else:
+            scores.append(-2 if for_x else 2)
+    best_move = scores.index(max(scores) if for_x else min(scores))
     board[best_move] = 'X' if for_x else 'O'
 
 
