@@ -14,18 +14,19 @@ def cnp_validator(cnp):
     # split string
     sex, year, month, day, county, x, y = re.findall('..', ' ' + cnp)
     # test sex
-    if int(sex) in [0, 3, 4]:
+    if not int(sex):
         return False
     # test date
+    century = '19' if int(sex) in [1, 2] else '18' if int(sex) in [3, 4] else '20'
     try:
-        datetime.datetime(int('20' + year), int(month), int(day))
-        false_date = False
+        datetime.datetime(int(century + year), int(month), int(day))
     except ValueError:
-        false_date = True
-    if false_date:
         return False
     # test county
-    if int(county) > 52 or (46 < int(county) < 51):
+    if int(county) > 52 or (int(county) in [0, *range(47, 51)]):
+        return False
+    # test code
+    if x + y[0] == '000':
         return False
     # test control digit
     code = "279146358279"

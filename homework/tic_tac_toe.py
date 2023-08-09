@@ -55,7 +55,7 @@ def minimax(x_turn, position, alpha, beta):
 def play(player_x):
     draw_board()
     coord = input('Enter position (1-9): ')
-    if coord.isnumeric() and int(coord) in range(1, 10) and board[int(coord) - 1] == '-':
+    if coord.isdecimal() and int(coord) in range(1, 10) and board[int(coord) - 1] == '-':
         board[int(coord) - 1] = 'X' if player_x else 'O'
         if not is_game_over(board):
             make_best_move(not player_x)
