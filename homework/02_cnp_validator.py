@@ -12,7 +12,7 @@ def cnp_validator(cnp):
     if re.search('\D', cnp):
         return False
     # split string
-    sex, year, month, day, county, x, y = re.findall('..', ' ' + cnp)
+    sex, year, month, day, county, *rest = re.findall('..', ' ' + cnp)
     # test sex
     if not int(sex):
         return False
@@ -26,7 +26,7 @@ def cnp_validator(cnp):
     if int(county) > 52 or (int(county) in [0, *range(47, 51)]):
         return False
     # test code
-    if x + y[0] == '000':
+    if ''.join(rest)[:-1] == '000':
         return False
     # test control digit
     code = "279146358279"
