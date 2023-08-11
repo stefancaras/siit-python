@@ -23,6 +23,8 @@ def make_best_move(for_x):
     for i in range(9):
         if board[i] == '-':
             board[i] = 'X' if for_x else 'O'
+            if is_game_over(board):
+                return
             scores.append(minimax(not for_x, board, -2, 2))
             board[i] = '-'
         else:
@@ -71,7 +73,7 @@ while True:
     game_over = is_game_over(board)
     if game_over:
         draw_board()
-        print("It's a tie!" if game_over == 'tie' else game_over + ' won!')
+        print("It's a tie!" if game_over == 'tie' else 'The computer won!')
         break
     elif is_x:
         play('X')
