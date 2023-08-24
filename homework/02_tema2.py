@@ -4,8 +4,10 @@
 # caractere a fost gasit de Mihai”, unde Mihai reprezinta numele vostru
 # preluat automat de la tastatura.
 
+message = f"Șirul de caractere a fost găsit de {input('Enter your name: ')}"
 string = input('Enter characters: ')
-print('You entered ' + ('a string.' if string.isalpha() else 'numbers.' if string.isdecimal() else 'characters.'))
+print('You entered a string.' if string.isalpha() else 'You entered numbers.' if string.isdecimal() else message)
+
 
 # 2. Creati un program in care utilizatorul sa introduca un numar. Validati daca acest
 # numar este par sau impar si afisati un raspuns in acest sens.
@@ -31,10 +33,11 @@ print('It is ' + ('' if is_leap_year(int(input('Enter year: '))) else 'not ') + 
 # afisati numarul pozitiv.
 
 def sign(n):
-    return -n if n < 0 else 'Numarul este 0' if n == 0 else 'Numărul e <10' if n < 10 else n
+    return -n if n < 0 else 'Numărul este 0' if n == 0 else 'Numărul e <10' if n < 10 else n
 
 
 print(sign(int(input('Enter a number: '))))
+
 
 # 5. Creati un program care are ca scop un meniu. Meniul se va selecta prin introducerea
 # de la tastaura a unui numar intre 1 si 5 captat intr-o variabila. Prezentati prin afisare
@@ -51,3 +54,11 @@ print(sign(int(input('Enter a number: '))))
 # - daca utilizatorul scrie de la tastaura 5 afisati “Adaugare element” - daca utilizatorul
 # scrie altceva de la tastaura afisati “Alegerea nu exista. Reincercati”
 
+menu = ['Alegerea nu exista. Reincercati.', 'Afisare lista de cumparaturi', 'Adaugare element',
+        'Stergere element', 'Sterere lista de cumparaturi', 'Cautare in lista de cumparaturi']
+
+for i in range(1, len(menu)):
+    print(f'{i} - {menu[i]}')
+
+choice = int(input('\nIntrodu un număr între 1 și 5: '))
+print(menu[choice] if choice in range(1, 6) else menu[0])
