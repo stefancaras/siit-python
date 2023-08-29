@@ -4,10 +4,10 @@
 # caractere a fost gasit de Mihai”, unde Mihai reprezinta numele vostru
 # preluat automat de la tastatura.
 
-message = f"Șirul de caractere a fost găsit de {input('Enter your name: ')}"
-string = input('Enter characters: ')
-print('You entered a string.' if string.isalpha() else 'You entered numbers.' if string.isdecimal() else message)
-
+string = input('Introdu caractere: ')
+name = input('Introdu numele tău: ')
+print(f'Șirul de {"litere" if string.isalpha() else "cifre" if string.isdecimal() else "caractere"} '
+      f'a fost găsit de {name}.')
 
 # 2. Creati un program in care utilizatorul sa introduca un numar. Validati daca acest
 # numar este par sau impar si afisati un raspuns in acest sens.
