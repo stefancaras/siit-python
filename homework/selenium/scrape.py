@@ -11,4 +11,9 @@ for i in range(1, 6):
     with open(f'{i}.csv', 'w', newline='') as csvfile:
         wr = csv.writer(csvfile)
         for row in table.find_elements(by=By.TAG_NAME, value='tr'):
-            wr.writerow([d.text for d in row.find_elements(by=By.TAG_NAME, value='td')])
+            my_list = []
+            for d in row.find_elements(by=By.TAG_NAME, value='td'):
+                my_list.append(d.text)
+                if d.text == ' TOTAL':
+                    my_list.append('')
+            wr.writerow(my_list)
